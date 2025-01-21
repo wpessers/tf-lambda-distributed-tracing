@@ -1,0 +1,16 @@
+{
+  "name": "tf-lambda-distributed-tracing",
+  "version": "1.0.0",
+  "description": "This repo is a work in progress. The aim is to setup aws lambda distributed tracing, without having to use AWS's X-Ray. Instead using an external system like Grafana to inspect traces.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.735.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2"
+  }
+}
