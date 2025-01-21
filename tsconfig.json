@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  }
+}
