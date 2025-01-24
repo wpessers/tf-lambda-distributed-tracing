@@ -22,7 +22,7 @@ export const handler = async(event: APIGatewayProxyEvent): Promise<APIGatewayPro
 
     return {
         statusCode: 200,
-        body: JSON.stringify({})
+        body: JSON.stringify({} as LaunchResponse)
     }
 }
 
