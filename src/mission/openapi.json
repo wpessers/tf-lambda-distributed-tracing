@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Launch API",
+    "description": "Demo API spec for Launch api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "",
+      "description": ""
+    }
+  ],
+  "x-amazon-apigateway-request-validators": {
+    "basic": {
+      "validateRequestBody": true,
+      "validateRequestParameters": true
+    },
+    "params-only": {
+      "validateRequestBody": false,
+      "validateRequestParameters": true
+    }
+  },
+  "paths": {
+    "/mission/{rocketName}": {
+      "get": {
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/${mission_control_lambda_arn}/invocations",
+          "passThroughBehavior": "when_no_match",
+          "requestParameters": {
+            "integration.request.path.rocketName": "method.request.path.rocketName",
+            "integration.request.querystring.newLaunch": "method.request.querystring.newLaunch"
+          },
+          "responses": {
+            "200": {
+              "statusCode": 200
+            },
+            "400": {
+              "statusCode": 400
+            },
+            "404": {
+              "statusCode": 404
+            },
+            "default": {
+              "statusCode": 500
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator": "params-only",
+        "operationId": "controlMission",
+        "description": "Checks if a launch for a specific rocket is underway, if not initiates the launch",
+        "responses": {
+          "200": {
+            "description": "The name, destination and status of the rocket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ControlMissionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ControlMissionResponse": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
