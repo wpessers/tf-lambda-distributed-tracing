@@ -1,14 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-type LaunchRequest = {
-    name: string,
-    destination: string,
-}
-
-type LaunchResponse = {
-    id: string,
-    status: "LAUNCHING" | "LAUNCHED"
-}
+import LaunchRequest = Components.Schemas.LaunchRequest;
+import LaunchResponse = Components.Schemas.LaunchResponse;
 
 export const handler = async(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const requestBody = event?.body;

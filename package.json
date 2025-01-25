@@ -4,13 +4,20 @@
   "description": "This repo is a work in progress. The aim is to setup aws lambda distributed tracing, without having to use AWS's X-Ray. Instead using an external system like Grafana to inspect traces.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm run types",
+    "build": "npm run build:launch && npm run build:mission",
+    "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --platform=node",
+    "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --platform=node",
+    "postbuild": "cd dist && zip -r lambdas.zip lambdas/*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "types": "dtsgen --out src/launch/@types/launch.d.ts src/launch/openapi.json && dtsgen --out src/mission/@types/launch.d.ts src/mission/openapi.json"
   },
   "license": "ISC",
   "dependencies": {
+    "dtsgenerator": "^3.19.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.147",
-    "esbuild": "0.24.2"
+    "esbuild": "^0.24.2"
   }
 }
