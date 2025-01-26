@@ -39,15 +39,22 @@ resource "aws_lambda_function" "control_mission" {
   function_name = "control-mission"
   role          = aws_iam_role.control_mission.arn
 
-  filename = "../dist/lambdas.zip"
-  handler  = "lambdas/controlMissionLambda.handler"
+  filename         = "../dist/lambdas.zip"
+  handler          = "lambdas/controlMissionLambda.handler"
   source_code_hash = filebase64sha256("../dist/lambdas.zip")
 
   runtime       = "nodejs18.x"
   architectures = ["arm64"]
+  layers        = ["arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_11_0:1"]
 
   tracing_config {
     mode = "PassThrough"
+  }
+
+  environment {
+    variables = {
+      OPENTELEMETRY_COLLECTOR_CONFIG_URI : "/var/task/collector.yaml"
+    }
   }
 }
 

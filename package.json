@@ -8,7 +8,7 @@
     "build": "npm run build:launch && npm run build:mission",
     "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --platform=node",
     "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --platform=node",
-    "postbuild": "cd dist && zip -r lambdas.zip lambdas/*",
+    "postbuild": "cp collector.yaml dist/collector.yaml && cd dist && zip -r lambdas.zip ./*",
     "test": "echo \"Error: no test specified\" && exit 1",
     "types": "dtsgen --out src/launch/@types/launch.d.ts src/launch/openapi.json && dtsgen --out src/mission/@types/mission.d.ts src/mission/openapi.json"
   },

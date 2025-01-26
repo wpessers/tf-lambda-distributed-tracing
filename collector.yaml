@@ -1,0 +1,17 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 'localhost:4317'
+
+exporters:
+  otlp:
+    endpoint: https://tempo-prod-10-prod-eu-west-2.grafana.net/tempo
+    headers:
+     authorization: Basic MTEwNDE2NTpnbGNfZXlKdklqb2lNVE16TVRFek9DSXNJbTRpT2lKemRHRmpheTB4TVRVeU1EVXhMV2gwTFhKbFlXUXRkSEpoWTJVdGRHOXJaVzRpTENKcklqb2lSalpWTVVwRFpEWlhOVEJNY3pkbk1FbHFlalE0Y0Vjd0lpd2liU0k2ZXlKeUlqb2ljSEp2WkMxbGRTMTNaWE4wTFRJaWZYMD0=
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [logging,otlp]

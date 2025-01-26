@@ -13,13 +13,12 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         throw Error("Bad Request")
     }
 
-    const { rocketName, destination } = JSON.parse(requestBody);
+    const { rocketName, destination } = JSON.parse(requestBody) as LaunchRequest;
 
     const missionControlHostname = process.env['MISSION_CONTROL_HOSTNAME']
     const missionResponse = await fetch(`https://${missionControlHostname}/test/mission/${rocketName}`, {
         method: 'GET'
     })
-    
     const mission: ControlMissionResponse = await missionResponse.json()
     const status = mission.progress > 0 ? 'UNDERWAY' : 'LAUNCHING'
 
