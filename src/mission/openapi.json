@@ -96,7 +96,11 @@
           "progress": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "destination",
+          "progress"
+        ]
       }
     }
   }

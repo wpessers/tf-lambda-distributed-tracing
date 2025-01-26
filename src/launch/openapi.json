@@ -78,7 +78,11 @@
           "destination": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "rocketName",
+          "destination"
+        ]
       },
       "LaunchResponse": {
         "type": "object",
@@ -92,7 +96,12 @@
           "status": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "rocketName",
+          "destination",
+          "status"
+        ]
       }
     }
   }
