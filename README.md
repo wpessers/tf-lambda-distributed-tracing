@@ -1,1 +1,3 @@
 This repo is a work in progress. The aim is to setup aws lambda distributed tracing, without having to use AWS's X-Ray. Instead using an external system like Grafana to inspect traces.
+The code in this repo is a very barebones implementation of 2 lambda functions, simply to test distributed tracing throughout a system consisting of 2 different api gateway api's.
+Each with only 1 endpoint that has a lambda proxy integration.
