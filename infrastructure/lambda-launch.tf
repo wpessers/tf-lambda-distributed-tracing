@@ -49,6 +49,12 @@ resource "aws_lambda_function" "request_launch" {
   tracing_config {
     mode = "PassThrough"
   }
+
+  environment {
+    variables = {
+      MISSION_CONTROL_HOSTNAME : var.mission_control_hostname
+    }
+  }
 }
 
 resource "aws_lambda_permission" "apigw_invoke_request_launch_lambda" {
