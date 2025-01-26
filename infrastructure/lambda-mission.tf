@@ -45,7 +45,11 @@ resource "aws_lambda_function" "control_mission" {
 
   runtime       = "nodejs18.x"
   architectures = ["arm64"]
-  layers        = ["arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_11_0:1"]
+
+  layers = [
+    "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-collector-arm64-0_11_0:1",
+    "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_11_0:1"
+  ]
 
   tracing_config {
     mode = "PassThrough"
@@ -53,7 +57,9 @@ resource "aws_lambda_function" "control_mission" {
 
   environment {
     variables = {
+      AWS_LAMBDA_EXEC_WRAPPER : "/opt/otel-handler"
       OPENTELEMETRY_COLLECTOR_CONFIG_URI : "/var/task/collector.yaml"
+      OTEL_TRACES_SAMPLER : "always_on"
     }
   }
 }

@@ -4,6 +4,8 @@ import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
+    console.log("Test")
+
     return {
         statusCode: 200,
         body: JSON.stringify({
