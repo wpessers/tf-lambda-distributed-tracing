@@ -40,7 +40,7 @@ resource "aws_lambda_function" "control_mission" {
   role          = aws_iam_role.control_mission.arn
 
   filename = "../dist/lambdas.zip"
-  handler  = "lambdas/controlMissionLambda.js"
+  handler  = "lambdas/controlMissionLambda.handler"
   source_code_hash = filebase64sha256("../dist/lambdas.zip")
 
   runtime       = "nodejs18.x"

@@ -40,7 +40,7 @@ resource "aws_lambda_function" "request_launch" {
   role          = aws_iam_role.request_launch.arn
 
   filename = "../dist/lambdas.zip"
-  handler  = "lambdas/requestLaunchLambda.js"
+  handler  = "lambdas/requestLaunchLambda.handler"
   source_code_hash = filebase64sha256("../dist/lambdas.zip")
 
   runtime       = "nodejs18.x"
