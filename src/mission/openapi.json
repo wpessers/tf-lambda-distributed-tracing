@@ -51,6 +51,25 @@
         "x-amazon-apigateway-request-validator": "params-only",
         "operationId": "controlMission",
         "description": "Checks if a launch for a specific rocket is underway, if not initiates the launch",
+        "parameters": [
+          {
+            "name": "rocketName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newLaunch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "The name, destination and status of the rocket",
