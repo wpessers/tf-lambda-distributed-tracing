@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "control_mission_assume_role" {
 data "aws_iam_policy_document" "control_mission_role" {
   statement {
     effect    = "Allow"
-    actions   = ["logs:CreateLogStrem", "logs:PutLogEvents"]
+    actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${aws_cloudwatch_log_group.control_mission.arn}:*"]
   }
 }

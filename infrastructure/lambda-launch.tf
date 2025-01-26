@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "request_launch_assume_role" {
 data "aws_iam_policy_document" "request_launch_role" {
   statement {
     effect    = "Allow"
-    actions   = ["logs:CreateLogStrem", "logs:PutLogEvents"]
+    actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${aws_cloudwatch_log_group.request_launch.arn}:*"]
   }
 }
