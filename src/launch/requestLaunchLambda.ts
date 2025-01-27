@@ -5,7 +5,7 @@ import LaunchRequest = Components.Schemas.LaunchRequest;
 import LaunchResponse = Components.Schemas.LaunchResponse;
 import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
-export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     console.log("Lambda invoked")
     const requestBody = event?.body;
 
@@ -31,3 +31,5 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         } as LaunchResponse)
     }
 }
+
+module.exports = { handler }

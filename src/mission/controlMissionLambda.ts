@@ -2,9 +2,9 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
-export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
-    console.log("Test")
+    console.log("Hello world")
 
     return {
         statusCode: 200,
@@ -14,3 +14,5 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         } as ControlMissionResponse)
     }
 }
+
+module.exports = { handler }

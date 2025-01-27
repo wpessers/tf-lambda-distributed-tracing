@@ -58,10 +58,17 @@ resource "aws_lambda_function" "control_mission" {
   environment {
     variables = {
       AWS_LAMBDA_EXEC_WRAPPER : "/opt/otel-handler"
-      OPENTELEMETRY_COLLECTOR_CONFIG_URI : "/var/task/collector.yaml"
+      OTEL_TRACES_EXPORTER : "otlp"
+      OTEL_METRICS_EXPORTER : "otlp"
+      OTEL_LOG_LEVEL : "DEBUG"
+      OTEL_EXPORTER_OTLP_ENDPOINT : "http://localhost:4317/"
+      OTEL_EXPORTER_OTLP_PROTOCOL : "grpc"
       OTEL_TRACES_SAMPLER : "always_on"
+      OPENTELEMETRY_COLLECTOR_CONFIG_FILE : "/var/task/collector.yaml"
     }
   }
+
+  timeout = 10
 }
 
 resource "aws_lambda_permission" "apigw_invoke_control_mission_lambda" {
