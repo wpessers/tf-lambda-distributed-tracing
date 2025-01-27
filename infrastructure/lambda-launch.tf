@@ -61,15 +61,14 @@ resource "aws_lambda_function" "request_launch" {
       OTEL_TRACES_EXPORTER : "otlp"
       OTEL_METRICS_EXPORTER : "otlp"
       OTEL_LOG_LEVEL : "DEBUG"
-      OTEL_EXPORTER_OTLP_ENDPOINT : "http://localhost:4317/"
-      OTEL_EXPORTER_OTLP_PROTOCOL : "grpc"
       OTEL_TRACES_SAMPLER : "always_on"
       OPENTELEMETRY_COLLECTOR_CONFIG_FILE : "/var/task/collector.yaml"
+      OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION=true
       MISSION_CONTROL_HOSTNAME : var.mission_control_hostname
     }
   }
 
-  timeout = 10
+  timeout = 20
 }
 
 resource "aws_lambda_permission" "apigw_invoke_request_launch_lambda" {
