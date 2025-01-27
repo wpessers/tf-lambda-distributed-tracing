@@ -8,9 +8,9 @@ receivers:
 
 exporters:
   otlp:
-    endpoint: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
+    endpoint: tempo-prod-10-prod-eu-west-2.grafana.net:443
     headers:
-     authorization: Basic
+     authorization: Basic <Replace me with your token>
   debug:
     verbosity: detailed
 
