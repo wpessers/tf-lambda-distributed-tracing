@@ -14,10 +14,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "dtsgenerator": "^3.19.2"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.147",
+    "dtsgenerator": "^3.19.2",
     "esbuild": "^0.24.2",
     "ts-node": "^10.9.2"
   }
