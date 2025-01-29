@@ -16,8 +16,8 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
 
     const { rocketName, destination } = JSON.parse(requestBody) as LaunchRequest;
 
-    const missionControlHostname = process.env['MISSION_CONTROL_HOSTNAME']
-    const missionResponse = await fetch(`https://${missionControlHostname}/test/mission/${rocketName}`, {
+    const missionControlBaseUrl = process.env['MISSION_CONTROL_BASE_URL']
+    const missionResponse = await fetch(`${missionControlBaseUrl}test/mission/${rocketName}`, {
         method: 'GET'
     })
     const mission = await missionResponse.json() as ControlMissionResponse

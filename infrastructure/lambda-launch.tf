@@ -64,7 +64,7 @@ resource "aws_lambda_function" "request_launch" {
       OTEL_TRACES_SAMPLER : "always_on"
       OPENTELEMETRY_COLLECTOR_CONFIG_FILE : "/var/task/collector.yaml"
       OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION=true
-      MISSION_CONTROL_HOSTNAME : var.mission_control_hostname
+      MISSION_CONTROL_BASE_URL : aws_api_gateway_deployment.mission.invoke_url
     }
   }
 
