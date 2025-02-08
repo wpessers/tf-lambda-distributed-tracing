@@ -1,7 +1,6 @@
 {
   "name": "tf-lambda-distributed-tracing",
   "version": "1.0.0",
-  "description": "This repo is a work in progress. The aim is to setup aws lambda distributed tracing, without having to use AWS's X-Ray. Instead using an external system like Grafana to inspect traces.",
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run types",
