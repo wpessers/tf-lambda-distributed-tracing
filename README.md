@@ -12,11 +12,18 @@ The lambdas contain some dummy code to emulate this functionality.
 
 ### Build
 
-
+`npm run build` will build the deployment package. This script will bundle code for both lambdas and create a zip file containing both of them, as well as the collector.yaml containing config for the otel collector.
+To build one of the lambdas separately use either the `:launch` or the `:mission` suffix in the build command.
 
 ### Deployment
 
-Terraform is used to deploy the infrastructure on AWS. The base url of the mission control API is dynamically loaded into an environment variable of the launch lambd.
+Terraform is used to deploy the infrastructure on AWS. The base url of the mission control API is dynamically loaded into an environment variable of the launch lambda.
+To deploy to your own account make sure you set the aws credentials env vars like so:
+```
+export AWS_ACCESS_KEY_ID=<your_access_key_id>
+export AWS_SECRET_ACCESS_KEY=<your_access_key_value>
+export AWS_DEFAULT_REGION=<your_default_region>
+```
 
 ##
 
