@@ -1,3 +1,4 @@
+# Lambda Distributed Tracing with OTEL
 
 ## About this project
 
@@ -18,12 +19,17 @@ To build one of the lambdas separately use either the `:launch` or the `:mission
 ### Deployment
 
 Terraform is used to deploy the infrastructure on AWS. The base url of the mission control API is dynamically loaded into an environment variable of the launch lambda.
-To deploy to your own account make sure you set the aws credentials env vars like so:
+To deploy to your own account make sure you have built the lambda deployment package, like detailed above in the [Build](#build) section.
+
+Set the required env vars to connect to your AWS account like so:
 ```
 export AWS_ACCESS_KEY_ID=<your_access_key_id>
 export AWS_SECRET_ACCESS_KEY=<your_access_key_value>
 export AWS_DEFAULT_REGION=<your_default_region>
 ```
+
+Now run `terraform apply` to deploy the lambdas & apigw instances in your AWS  account.
+
 
 ##
 
