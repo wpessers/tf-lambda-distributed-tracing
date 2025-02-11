@@ -11,6 +11,8 @@ The project deploys 2 API Gateway REST API's, each with 1 endpoint that has a la
 Together, the REST API's are meant to be a rocket launch system. The launch API is where we can make a request to launch a specific rocket, the mission control api is the one that exposes data about rockets that have been launched. When a new launch is requested, the launch system makes a call to the mission control API to check if a rocket can be launched.
 The lambdas contain some dummy code to emulate this functionality.
 
+The mission control lambda also reads/writes from/to a dynamodb table. This is configured to have provisioned capacity of 5 RCU and WCU to make sure this remains well within the r/w limits of the free plan.
+
 ### Build
 
 `npm run build` will build the deployment package. This script will bundle code for both lambdas and create a zip file containing both of them, as well as the collector.yaml containing config for the otel collector.
