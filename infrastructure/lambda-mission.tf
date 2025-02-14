@@ -17,6 +17,12 @@ data "aws_iam_policy_document" "control_mission_role" {
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${aws_cloudwatch_log_group.control_mission.arn}:*"]
   }
+
+  statement {
+    effect    = "Allow"
+    actions   = ["dynamodb:GetItem"]
+    resources = [aws_dynamodb_table.mission.arn]
+  }
 }
 
 resource "aws_cloudwatch_log_group" "control_mission" {
@@ -62,7 +68,7 @@ resource "aws_lambda_function" "control_mission" {
       OTEL_METRICS_EXPORTER : "otlp"
       OTEL_LOG_LEVEL : "DEBUG"
       OTEL_TRACES_SAMPLER : "always_on"
-      OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION=true
+      OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
       OPENTELEMETRY_COLLECTOR_CONFIG_FILE : "/var/task/collector.yaml"
     }
   }
