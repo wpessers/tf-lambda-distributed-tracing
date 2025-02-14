@@ -19,8 +19,11 @@ data "aws_iam_policy_document" "control_mission_role" {
   }
 
   statement {
-    effect    = "Allow"
-    actions   = ["dynamodb:GetItem"]
+    effect = "Allow"
+    actions = [
+      "dynamodb:GetItem",
+      "dynamodb:PutItem"
+    ]
     resources = [aws_dynamodb_table.mission.arn]
   }
 }
