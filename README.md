@@ -30,8 +30,7 @@ export AWS_SECRET_ACCESS_KEY=<your_access_key_value>
 export AWS_DEFAULT_REGION=<your_default_region>
 ```
 
-Now run `terraform apply` to deploy the lambdas & apigw instances in your AWS  account.
-
+Now run `terraform apply` from the `infrastructure` directory to deploy the lambdas & apigw instances in your AWS  account.
 
 ##
 
