@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import fetch from 'node-fetch';
 import process from 'process';
 
@@ -7,11 +7,10 @@ import LaunchResponse = Components.Schemas.LaunchResponse;
 import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
 const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    console.log("Lambda invoked")
-    const requestBody = event?.body;
+    const requestBody = event.body;
 
     if (!requestBody) {
-        throw Error("Bad Request")
+        throw Error('Missing launch request')
     }
 
     const { rocketName, destination } = JSON.parse(requestBody) as LaunchRequest;
