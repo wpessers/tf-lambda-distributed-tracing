@@ -56,7 +56,7 @@ resource "aws_lambda_function" "lambda_function" {
   }
 
   environment {
-    variables = {
+    variables = merge({
       AWS_LAMBDA_EXEC_WRAPPER : "/opt/otel-handler"
       OTEL_TRACES_EXPORTER : "otlp"
       OTEL_METRICS_EXPORTER : "otlp"
@@ -64,8 +64,7 @@ resource "aws_lambda_function" "lambda_function" {
       OTEL_TRACES_SAMPLER : "always_on"
       OPENTELEMETRY_COLLECTOR_CONFIG_FILE : "/var/task/collector.yaml"
       OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
-      MISSION_CONTROL_BASE_URL : aws_api_gateway_deployment.mission.invoke_url
-    }
+    }, var.extra_env_vars)
   }
 
   timeout = 20
