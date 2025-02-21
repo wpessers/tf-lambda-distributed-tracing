@@ -74,12 +74,3 @@ resource "aws_lambda_function" "lambda_function" {
 
   timeout = 20
 }
-
-resource "aws_lambda_permission" "apigw_invoke_lambda" {
-  statement_id  = "AllowAPIGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.lambda_function.function_name
-  principal     = "apigateway.amazonaws.com"
-
-  source_arn = "${var.api_execution_arn}/*"
-}

@@ -13,11 +13,6 @@ variable "filename" {
   type        = string
 }
 
-variable "api_execution_arn" {
-  description = "Execution arn of the ApiGateway REST API resource that uses the lambda as a proxy integration"
-  type        = string
-}
-
 variable "enabled_instrumentations" {
   description = "Comma separated list of enabled OTEL instrumentation libraries"
   type = string
