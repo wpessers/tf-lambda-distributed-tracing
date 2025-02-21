@@ -68,7 +68,8 @@ resource "aws_lambda_function" "control_mission" {
     variables = {
       AWS_LAMBDA_EXEC_WRAPPER : "/opt/otel-handler"
       OTEL_TRACES_EXPORTER : "otlp"
-      OTEL_METRICS_EXPORTER : "otlp"
+      OTEL_METRICS_EXPORTER : "none"
+      OTEL_LOGS_EXPORTER: "none"
       OTEL_LOG_LEVEL : "DEBUG"
       OTEL_TRACES_SAMPLER : "always_on"
       OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true

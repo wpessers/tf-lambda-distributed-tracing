@@ -17,6 +17,3 @@ service:
     traces:
       receivers: [otlp]
       exporters: [otlp]
-    metrics:
-      receivers: [otlp]
-      exporters: [debug]
