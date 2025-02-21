@@ -56,16 +56,19 @@ resource "aws_lambda_function" "lambda_function" {
   }
 
   environment {
-    variables = merge({
-      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-handler"
-      OTEL_TRACES_EXPORTER = "otlp"
-      OTEL_METRICS_EXPORTER = "none"
-      OTEL_LOG_LEVEL = "DEBUG"
-      OTEL_TRACES_SAMPLER = "always_on"
-      OPENTELEMETRY_COLLECTOR_CONFIG_FILE = "/var/task/collector.yaml"
-      OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
-      OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations
-    }, var.extra_env_vars)
+    variables = merge(
+      {
+        AWS_LAMBDA_EXEC_WRAPPER                     = "/opt/otel-handler"
+        OTEL_TRACES_EXPORTER                        = "otlp"
+        OTEL_METRICS_EXPORTER                       = "none"
+        OTEL_LOG_LEVEL                              = "DEBUG"
+        OTEL_TRACES_SAMPLER                         = "always_on"
+        OPENTELEMETRY_COLLECTOR_CONFIG_FILE         = "/var/task/collector.yaml"
+        OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
+      },
+      var.enabled_instrumentations != "" ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
+      var.extra_env_vars
+    )
   }
 
   timeout = 20

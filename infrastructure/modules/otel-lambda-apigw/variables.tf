@@ -21,6 +21,7 @@ variable "api_execution_arn" {
 variable "enabled_instrumentations" {
   description = "Comma separated list of enabled OTEL instrumentation libraries"
   type = string
+  default = ""
 }
 
 variable "extra_env_vars" {

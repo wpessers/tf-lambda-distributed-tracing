@@ -17,8 +17,6 @@ module "test" {
 module "test2" {
   source = "./modules/otel-lambda-apigw"
 
-  enabled_instrumentations = "http"
-
   name              = "test2"
   filename          = "../dist/lambdas.zip"
   handler           = "lambdas/requestLaunchLambda.handler"
