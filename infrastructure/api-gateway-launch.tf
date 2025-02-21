@@ -1,7 +1,7 @@
 resource "aws_api_gateway_rest_api" "launch" {
   name = "launch-rest-api"
   body = templatefile("../src/launch/openapi.json", {
-    request_launch_lambda_arn = aws_lambda_function.request_launch.arn
+    request_launch_lambda_arn = module.request_launch.function_arn
   })
   endpoint_configuration {
     types = ["REGIONAL"]
