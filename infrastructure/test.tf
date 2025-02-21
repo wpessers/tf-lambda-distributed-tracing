@@ -6,14 +6,18 @@ module "test" {
   handler           = "lambdas/requestLaunchLambda.handler"
   api_execution_arn = aws_api_gateway_rest_api.launch.execution_arn
 
+  enabled_instrumentations = "http"
+
   extra_env_vars = {
-    TEST : "test"
-    TEST123 : "test123"
+    TEST = "test"
+    TEST123 = "test123"
   }
 }
 
 module "test2" {
   source = "./modules/otel-lambda-apigw"
+
+  enabled_instrumentations = "http"
 
   name              = "test2"
   filename          = "../dist/lambdas.zip"

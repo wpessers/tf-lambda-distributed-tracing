@@ -18,6 +18,11 @@ variable "api_execution_arn" {
   type        = string
 }
 
+variable "enabled_instrumentations" {
+  description = "Comma separated list of enabled OTEL instrumentation libraries"
+  type = string
+}
+
 variable "extra_env_vars" {
   description = "Custom environment variables to be made available to function code through the lambda runtime"
   type        = map(string)
