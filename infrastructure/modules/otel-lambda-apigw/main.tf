@@ -61,6 +61,7 @@ resource "aws_lambda_function" "lambda_function" {
         AWS_LAMBDA_EXEC_WRAPPER                     = "/opt/otel-handler"
         OTEL_TRACES_EXPORTER                        = "otlp"
         OTEL_METRICS_EXPORTER                       = "none"
+        OTEL_LOGS_EXPORTER                          = "none"
         OTEL_LOG_LEVEL                              = "DEBUG"
         OTEL_TRACES_SAMPLER                         = "always_on"
         OPENTELEMETRY_COLLECTOR_CONFIG_FILE         = "/var/task/collector.yaml"
