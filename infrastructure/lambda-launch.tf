@@ -4,6 +4,12 @@ module "request_launch" {
   name     = "request-launch"
   filename = "../dist/lambdas.zip"
   handler  = "lambdas/requestLaunchLambda.handler"
+
+  enabled_instrumentations = "http"
+
+  extra_env_vars = {
+    MISSION_CONTROL_BASE_URL = aws_api_gateway_deployment.mission.invoke_url
+  }
 }
 
 resource "aws_lambda_permission" "apigw_invoke_request_launch_lambda" {
