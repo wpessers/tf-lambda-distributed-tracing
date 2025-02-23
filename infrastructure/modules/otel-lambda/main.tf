@@ -11,14 +11,6 @@ data "aws_iam_policy_document" "lambda_assume_role" {
   }
 }
 
-data "aws_iam_policy_document" "execution_policy" {
-  statement {
-    effect    = "Allow"
-    actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
-    resources = ["${aws_cloudwatch_log_group.log_group.arn}:*"]
-  }
-}
-
 resource "aws_cloudwatch_log_group" "log_group" {
   name              = "/aws/lambda/${aws_lambda_function.lambda_function.function_name}"
   retention_in_days = 1
@@ -27,12 +19,6 @@ resource "aws_cloudwatch_log_group" "log_group" {
 resource "aws_iam_role" "execution_role" {
   name               = "${var.name}-lambda-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
-}
-
-resource "aws_iam_role_policy" "execution_role_policy" {
-  name   = "${var.name}-lambda-policy"
-  policy = data.aws_iam_policy_document.execution_policy.json
-  role   = aws_iam_role.execution_role.id
 }
 
 resource "aws_lambda_function" "lambda_function" {
