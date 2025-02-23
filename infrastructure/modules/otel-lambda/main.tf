@@ -64,7 +64,7 @@ resource "aws_lambda_function" "lambda_function" {
         OTEL_LOGS_EXPORTER                          = "none"
         OTEL_LOG_LEVEL                              = "DEBUG"
         OTEL_TRACES_SAMPLER                         = "always_on"
-        OPENTELEMETRY_COLLECTOR_CONFIG_FILE         = "/var/task/collector.yaml"
+        OPENTELEMETRY_COLLECTOR_CONFIG_URI          = "/var/task/collector.yaml"
         OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
       },
       var.enabled_instrumentations != "" ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
