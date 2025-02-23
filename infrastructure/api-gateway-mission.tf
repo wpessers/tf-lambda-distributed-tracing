@@ -1,7 +1,7 @@
 resource "aws_api_gateway_rest_api" "mission" {
   name = "mission-rest-api"
   body = templatefile("../src/mission/openapi.json", {
-    mission_control_lambda_arn = aws_lambda_function.control_mission.arn
+    mission_control_lambda_arn = module.control_mission.function_arn
   })
   endpoint_configuration {
     types = ["REGIONAL"]
