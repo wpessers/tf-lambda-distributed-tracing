@@ -16,7 +16,7 @@ variable "filename" {
 variable "enabled_instrumentations" {
   description = "Comma separated list of enabled OTEL instrumentation libraries"
   type = string
-  default = ""
+  default = null
 }
 
 variable "extra_env_vars" {

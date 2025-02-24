@@ -53,7 +53,7 @@ resource "aws_lambda_function" "lambda_function" {
         OPENTELEMETRY_COLLECTOR_CONFIG_URI          = "/var/task/collector.yaml"
         OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
       },
-      var.enabled_instrumentations != "" ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
+      var.enabled_instrumentations != null ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
       var.extra_env_vars
     )
   }

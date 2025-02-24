@@ -4,6 +4,8 @@ module "control_mission" {
   name     = "control-mission"
   filename = "../dist/lambdas.zip"
   handler  = "lambdas/controlMissionLambda.handler"
+
+  enabled_instrumentations = ""
 }
 
 data "aws_iam_policy_document" "control_mission_policy" {
