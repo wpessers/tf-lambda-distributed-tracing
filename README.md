@@ -37,5 +37,6 @@ Now run `terraform apply` from the `infrastructure` directory to deploy the lamb
 
 For generating the auth header I use this command: `echo -n "<grafana user id>:<grafana api key>" | base64`
 
-Disclaimer:
+## Disclaimer
 Other than a distributed tracing POC, at this time the repo is not meant for any other purposes. There's lots of things that can be improved upon fairly easily like adding a dedicated esbuild build script instead of individual npm scripts.
+I did refactor the code to adhere to a ports & adapters -like architecture. But this was more a personal preference to quickly get some better structure going, the code is not meant to be a perfect example of ports & adapters architecture.
