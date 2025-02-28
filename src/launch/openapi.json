@@ -47,7 +47,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InitiateLaunchRequest"
+                "$ref": "#/components/schemas/LaunchRequest"
               }
             }
           }
@@ -58,7 +58,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InitiateLaunchResponse"
+                  "$ref": "#/components/schemas/LaunchResponse"
                 }
               }
             }
@@ -69,7 +69,7 @@
   },
   "components": {
     "schemas": {
-      "InitiateLaunchRequest": {
+      "LaunchRequest": {
         "type": "object",
         "properties": {
           "rocketName": {
@@ -84,7 +84,7 @@
           "destination"
         ]
       },
-      "InitiateLaunchResponse": {
+      "LaunchResponse": {
         "type": "object",
         "properties": {
           "rocketName": {
