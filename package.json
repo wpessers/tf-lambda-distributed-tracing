@@ -13,8 +13,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.749.0",
-    "node-fetch": "^3.3.2"
+    "@aws-sdk/client-dynamodb": "^3.749.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.147",
