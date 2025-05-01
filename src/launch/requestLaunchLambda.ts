@@ -1,5 +1,4 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import fetch from 'node-fetch';
 import process from 'process';
 
 import LaunchRequest = Components.Schemas.LaunchRequest;
@@ -19,7 +18,7 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
     const missionResponse = await fetch(`${missionControlBaseUrl}test/mission/${rocketName}`, {
         method: 'GET'
     })
-    const mission = await missionResponse.json() as ControlMissionResponse
+    const mission: ControlMissionResponse = await missionResponse.json()
     const status = mission.progress > 0 ? 'UNDERWAY' : 'LAUNCHING'
 
     return {

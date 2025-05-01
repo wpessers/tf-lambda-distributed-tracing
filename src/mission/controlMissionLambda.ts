@@ -5,7 +5,6 @@ import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
 const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const rocketName = event.pathParameters!['rocketName']
-
     if (!rocketName) {
         throw Error('No rocket name specified')
     }
@@ -40,7 +39,6 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
         }
         await client.send(new PutItemCommand(createInput))
     }
-
 
     return {
         statusCode: 200,
