@@ -24,3 +24,7 @@ variable "extra_env_vars" {
   type        = map(string)
   default     = {}
 }
+
+variable "instrumentation_layer_arn" {
+  type        = string
+}

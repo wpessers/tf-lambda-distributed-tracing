@@ -5,11 +5,14 @@ module "request_launch" {
   filename = "../dist/lambdas.zip"
   handler  = "lambdas/requestLaunchLambda.handler"
 
-  enabled_instrumentations = "http"
+  enabled_instrumentations = "pino,undici"
 
   extra_env_vars = {
     MISSION_CONTROL_BASE_URL = aws_api_gateway_deployment.mission.invoke_url
   }
+
+  # instrumentation_layer_arn = aws_lambda_layer_version.otel_layer.arn
+  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_13_0:1"
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {
