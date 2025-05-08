@@ -21,6 +21,12 @@ data "aws_iam_policy_document" "request_launch_policy" {
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${module.request_launch.log_group_arn}:*"]
   }
+
+  statement {
+    effect = "Allow"
+    actions = ["sqs:SendMessage"]
+    resources = [ aws_sqs_queue.launch_queue.arn ]
+  }
 }
 
 resource "aws_iam_role_policy" "request_launch_role_policy" {

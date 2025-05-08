@@ -26,6 +26,16 @@ data "aws_iam_policy_document" "control_mission_policy" {
     ]
     resources = [aws_dynamodb_table.mission.arn]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:ReceiveMessage"
+    ]
+    resources = [aws_sqs_queue.launch_queue.arn]
+  }
 }
 
 resource "aws_iam_role_policy" "control_mission_role_policy" {
