@@ -1,25 +1,26 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import process from 'process';
 
 import LaunchRequest = Components.Schemas.LaunchRequest;
 import LaunchResponse = Components.Schemas.LaunchResponse;
-import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
+
+const sqsClient = new SQSClient({ region: 'eu-central-1' })
 
 const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const requestBody = event.body;
-
     if (!requestBody) {
         throw Error('Missing launch request')
     }
-
     const { rocketName, destination } = JSON.parse(requestBody) as LaunchRequest;
 
-    const missionControlBaseUrl = process.env['MISSION_CONTROL_BASE_URL']
-    const missionResponse = await fetch(`${missionControlBaseUrl}test/mission/${rocketName}`, {
-        method: 'GET'
-    })
-    const mission: ControlMissionResponse = await missionResponse.json()
-    const status = mission.progress > 0 ? 'UNDERWAY' : 'LAUNCHING'
+    await sqsClient.send(
+        new SendMessageCommand({
+            QueueUrl: process.env['LAUNCH_QUEUE_URL'],
+            MessageBody: JSON.stringify({ rocketName: rocketName })
+        })
+    )
+    const status = 'LAUNCHING'
 
     return {
         statusCode: 200,
