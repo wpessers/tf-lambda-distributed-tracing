@@ -8,7 +8,7 @@ module "request_launch" {
   enabled_instrumentations = "pino,undici"
 
   extra_env_vars = {
-    MISSION_CONTROL_BASE_URL = aws_api_gateway_deployment.mission.invoke_url
+    LAUNCH_QUEUE_URL = aws_sqs_queue.launch_queue.url
   }
 
   # instrumentation_layer_arn = aws_lambda_layer_version.otel_layer.arn
