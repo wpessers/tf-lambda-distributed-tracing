@@ -23,9 +23,9 @@ data "aws_iam_policy_document" "request_launch_policy" {
   }
 
   statement {
-    effect = "Allow"
-    actions = ["sqs:SendMessage"]
-    resources = [ aws_sqs_queue.launch_queue.arn ]
+    effect    = "Allow"
+    actions   = ["sqs:SendMessage"]
+    resources = [aws_sqs_queue.launch_queue.arn]
   }
 }
 
