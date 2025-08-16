@@ -5,8 +5,8 @@
   "scripts": {
     "postinstall": "npm run types",
     "build": "npm run build:launch && npm run build:mission",
-    "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --platform=node",
-    "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-dynamodb --platform=node",
+    "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-sqs --external:pino --platform=node",
+    "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-dynamodb --external:@aws-sdk/client-sqs --platform=node",
     "postbuild": "cp collector.yaml dist/collector.yaml && cd dist && zip -r lambdas.zip ./*",
     "types": "dtsgen --out src/launch/@types/launch.d.ts src/launch/openapi.json && dtsgen --out src/mission/@types/mission.d.ts src/mission/openapi.json",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.749.0",
-    "@aws-sdk/client-sqs": "^3.806.0"
+    "@aws-sdk/client-sqs": "^3.806.0",
+    "pino": "^9.7.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.147",
