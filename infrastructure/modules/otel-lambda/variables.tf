@@ -15,8 +15,8 @@ variable "filename" {
 
 variable "enabled_instrumentations" {
   description = "Comma separated list of enabled OTEL instrumentation libraries"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "extra_env_vars" {
@@ -26,5 +26,5 @@ variable "extra_env_vars" {
 }
 
 variable "instrumentation_layer_arn" {
-  type        = string
+  type = string
 }
