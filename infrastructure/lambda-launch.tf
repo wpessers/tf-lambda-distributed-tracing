@@ -12,7 +12,7 @@ module "request_launch" {
   }
 
   # instrumentation_layer_arn = aws_lambda_layer_version.otel_layer.arn
-  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_13_0:1"
+  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_17_0:1"
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {

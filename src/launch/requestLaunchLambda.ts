@@ -1,11 +1,16 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import process from 'process';
+import pino from 'pino';
 
 import LaunchRequest = Components.Schemas.LaunchRequest;
 import LaunchResponse = Components.Schemas.LaunchResponse;
 import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
+const loggert = pino()
+
 const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    loggert.info('Incoming launch request')
+
     const requestBody = event.body;
 
     if (!requestBody) {

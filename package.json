@@ -4,9 +4,10 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run types",
-    "build": "npm run build:launch && npm run build:mission",
-    "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --platform=node",
+    "build": "npm run build:launch && npm run build:mission && npm run build:deps",
+    "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --external:pino --platform=node",
     "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-dynamodb --platform=node",
+    "build:deps": "jq '{dependencies: {pino: .packages[\"node_modules/pino\"].version}}' package-lock.json > dist/package.json && cd dist && npm install --omit-dev --no-package-lock",
     "postbuild": "cp collector.yaml dist/collector.yaml && cd dist && zip -r lambdas.zip ./*",
     "types": "dtsgen --out src/launch/@types/launch.d.ts src/launch/openapi.json && dtsgen --out src/mission/@types/mission.d.ts src/mission/openapi.json",
     "test": "echo \"Error: no test specified\" && exit 1"
