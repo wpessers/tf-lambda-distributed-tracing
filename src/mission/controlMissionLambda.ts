@@ -7,10 +7,8 @@ const dynamoClient = new DynamoDBClient({
 
 const handler: SQSHandler = async (event: SQSEvent): Promise<void> => {
     console.log(JSON.stringify(event));
-    
-    for (const message of event.Records) {
-        await processMessage(message)
-    }
+
+    event.Records.forEach(async(message) => await processMessage(message))
 }
 
 async function processMessage(message: SQSRecord) {

@@ -1,0 +1,6 @@
+{
+    "timestamp": "2025-05-13T19:01:18.169Z",
+    "level": "INFO",
+    "requestId": "f1220d97-791c-53e1-981b-6d0ae02e60f8",
+    "message": "{\"ApproximateReceiveCount\":\"1\",\"AWSTraceHeader\":\"Root=1-682396f9-674e72e7607f05ea1a9ef7ee;Parent=5e427165036fb9e8;Sampled=0;Lineage=1:ff98502d:0\",\"SentTimestamp\":\"1747162876437\",\"SenderId\":\"AROA3M7ACQPNKJPCHRPZ2:request-launch\",\"ApproximateFirstReceiveTimestamp\":\"1747162876444\"}"
+}
