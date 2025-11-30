@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run types",
+    "prebuild": "rm -rf dist/",
     "build": "npm run build:launch && npm run build:mission && npm run build:deps",
     "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --external:pino --platform=node",
     "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-dynamodb --platform=node",

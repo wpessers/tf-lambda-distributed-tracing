@@ -33,8 +33,8 @@ resource "aws_lambda_function" "lambda_function" {
   architectures = ["arm64"]
 
   layers = [
-    "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-collector-arm64-0_13_0:1",
-    var.instrumentation_layer_arn
+    var.instrumentation_layer_arn,
+    var.collector_layer_arn
   ]
 
   tracing_config {

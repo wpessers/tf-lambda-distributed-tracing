@@ -6,10 +6,10 @@ import LaunchRequest = Components.Schemas.LaunchRequest;
 import LaunchResponse = Components.Schemas.LaunchResponse;
 import ControlMissionResponse = Components.Schemas.ControlMissionResponse;
 
-const loggert = pino()
+const logger = pino()
 
 const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    loggert.info('Incoming launch request')
+    logger.info('Incoming launch request')
 
     const requestBody = event.body;
 
@@ -20,7 +20,7 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
     const { rocketName, destination } = JSON.parse(requestBody) as LaunchRequest;
 
     const missionControlBaseUrl = process.env['MISSION_CONTROL_BASE_URL']
-    const missionResponse = await fetch(`${missionControlBaseUrl}test/mission/${rocketName}`, {
+    const missionResponse = await fetch(`${missionControlBaseUrl}/mission/${rocketName}`, {
         method: 'GET'
     })
     const mission: ControlMissionResponse = await missionResponse.json()
