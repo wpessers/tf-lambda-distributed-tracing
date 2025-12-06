@@ -6,9 +6,9 @@ receivers:
 
 exporters:
   otlp:
-    endpoint: tempo-prod-10-prod-eu-west-2.grafana.net:443
+    endpoint: <YOUR OBSERVABILITY BACKEDN TRACE OTLP ENDPOINT HERE>
     headers:
-     authorization: Basic <Replace me with your token>
+     authorization: Basic <YOUR TOKEN HERE>
   debug:
     verbosity: detailed
 
