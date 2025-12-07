@@ -9,9 +9,11 @@ module "request_launch" {
 
   extra_env_vars = {
     LAUNCH_QUEUE_URL = aws_sqs_queue.launch_queue.url
+    OTEL_PROPAGATORS = "xray"
   }
 
-  collector_layer_arn = aws_lambda_layer_version.collector_layer.arn
+  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_16_0:1"
+  collector_layer_arn       = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-collector-arm64-0_19_0:1"
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {

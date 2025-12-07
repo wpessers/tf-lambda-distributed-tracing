@@ -7,8 +7,12 @@ module "control_mission" {
 
   enabled_instrumentations = "undici"
 
-  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
-  collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
+  extra_env_vars = {
+    OTEL_PROPAGATORS = "xray"
+  }
+
+  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_16_0:1"
+  collector_layer_arn       = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-collector-arm64-0_19_0:1"
 }
 
 data "aws_iam_policy_document" "control_mission_policy" {
