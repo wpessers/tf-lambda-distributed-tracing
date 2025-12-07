@@ -5,10 +5,10 @@ module "control_mission" {
   filename = "../dist/lambdas.zip"
   handler  = "lambdas/controlMissionLambda.handler"
 
-  enabled_instrumentations = "http,undici"
+  enabled_instrumentations = "undici"
 
-  instrumentation_layer_arn = aws_lambda_layer_version.otel_layer.arn
-  #   instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_13_0:1"
+  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
+  collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
 }
 
 data "aws_iam_policy_document" "control_mission_policy" {

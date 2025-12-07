@@ -11,8 +11,7 @@ module "request_launch" {
     LAUNCH_QUEUE_URL = aws_sqs_queue.launch_queue.url
   }
 
-  # instrumentation_layer_arn = aws_lambda_layer_version.otel_layer.arn
-  instrumentation_layer_arn = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_13_0:1"
+  collector_layer_arn = aws_lambda_layer_version.collector_layer.arn
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {

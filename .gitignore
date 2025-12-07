@@ -6,3 +6,5 @@ dist/
 *.tfstate*
 
 **/@types/
+
+collector.yaml
