@@ -17,14 +17,14 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.749.0",
-    "@aws-sdk/client-sqs": "^3.806.0",
-    "pino": "^9.7.0"
+    "@aws-sdk/client-dynamodb": "^3.946.0",
+    "@aws-sdk/client-sqs": "^3.946.0",
+    "pino": "^9.14.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.159",
     "dtsgenerator": "^3.19.2",
-    "esbuild": "^0.27.0",
+    "esbuild": "^0.27.1",
     "ts-node": "^10.9.2"
   }
 }
