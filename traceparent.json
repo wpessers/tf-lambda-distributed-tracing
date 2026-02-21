@@ -1,0 +1,29 @@
+{
+    "Records": [
+        {
+            "messageId": "7f08f5b8-25af-4334-bd6d-08c7dda74d04",
+            "receiptHandle": "AQEBcNJlnhd4A+sxyeMsZoTRtXh3HdxbEFNeByMoEFuOlgrvPkwAukTt01wy3PgmYhnKigjmRCa/Sry4wLG6wDBjbAdvhs7RWllN9jHUExB5enZsbi991Dqa2oyIrNEAwmd4e4ekCYm9b9Go82W+rJyDLvcnGOEireIeqeULkxg+SwK5RuOUxhbzdHaa8iM8ClejkOkZffBuEtIOnmWVmVH7RhLrshMasSV22g68rxohnCxlx9dd+EmjEu6Ze3VWf4My5w3NAxjtPN4IIrm6W+j23yNiIm1kVmuULkE9FSkbFtpNExEaF/YRCT+FsySFHAtK6vTJ4TPv5Wy7VPZ+6oPqCcZXbFL7gzW9PmkbgEMu79dVxJJKoCX134DJN8NuKmbhWP+enkp+uuZJX2SYOm2RIg==",
+            "body": "{\"rocketName\":\"test\"}",
+            "attributes": {
+                "ApproximateReceiveCount": "1",
+                "AWSTraceHeader": "Root=1-693561b5-0a00349e768e78f836a5cf28;Parent=19f13e992009b03f;Sampled=0;Lineage=1:ff98502d:0",
+                "SentTimestamp": "1765106104696",
+                "SenderId": "AROA3M7ACQPNN4QQZEFOA:request-launch",
+                "ApproximateFirstReceiveTimestamp": "1765106104698"
+            },
+            "messageAttributes": {
+                "traceparent": {
+                    "stringValue": "00-a66f5be5d2f49b7ccbca6d7ed002c192-5c229a8fbbda886f-01",
+                    "stringListValues": [],
+                    "binaryListValues": [],
+                    "dataType": "String"
+                }
+            },
+            "md5OfMessageAttributes": "2c5423cf0271b9b80a530ccb3f3ffd6f",
+            "md5OfBody": "c857c0b3c436e2e32bc9ff0ea0a718c8",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:eu-central-1:783764587482:launch-queue",
+            "awsRegion": "eu-central-1"
+        }
+    ]
+}

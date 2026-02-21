@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "npm run types",
     "prebuild": "rm -rf dist/",
-    "build": "npm run build:launch && npm run build:mission",
+    "build": "npm run build:launch && npm run build:mission && npm run build:deps",
     "build:launch": "esbuild src/launch/requestLaunchLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-sqs --external:pino --platform=node",
     "build:mission": "esbuild src/mission/controlMissionLambda.ts --bundle --outdir=dist/lambdas --external:@aws-sdk/client-dynamodb --external:@aws-sdk/client-sqs --platform=node",
     "build:deps": "jq '{dependencies: {pino: .packages[\"node_modules/pino\"].version}}' package-lock.json > dist/package.json && cd dist && npm install --omit-dev --no-package-lock",
