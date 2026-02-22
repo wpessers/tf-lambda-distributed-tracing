@@ -13,8 +13,8 @@ variable "filename" {
   type        = string
 }
 
-variable "enabled_instrumentations" {
-  description = "Comma separated list of enabled OTEL instrumentation libraries"
+variable "disabled_instrumentations" {
+  description = "Comma-separated list of Python instrumentations to disable (set to 'none' to enable all)"
   type        = string
   default     = null
 }
@@ -27,7 +27,7 @@ variable "extra_env_vars" {
 
 variable "instrumentation_layer_arn" {
   type    = string
-  default = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-nodejs-0_18_0:1"
+  default = "arn:aws:lambda:eu-central-1:184161586896:layer:opentelemetry-python-0_17_0:1"
 }
 
 variable "collector_layer_arn" {

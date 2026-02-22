@@ -29,7 +29,7 @@ resource "aws_lambda_function" "lambda_function" {
   handler          = var.handler
   source_code_hash = filebase64sha256(var.filename)
 
-  runtime       = "nodejs22.x"
+  runtime       = "python3.13"
   architectures = ["arm64"]
 
   layers = [
@@ -44,7 +44,7 @@ resource "aws_lambda_function" "lambda_function" {
   environment {
     variables = merge(
       {
-        AWS_LAMBDA_EXEC_WRAPPER                     = "/opt/otel-handler"
+        AWS_LAMBDA_EXEC_WRAPPER                     = "/opt/otel-instrument"
         OTEL_TRACES_EXPORTER                        = "otlp"
         OTEL_METRICS_EXPORTER                       = "none"
         OTEL_LOGS_EXPORTER                          = "none"
@@ -53,7 +53,7 @@ resource "aws_lambda_function" "lambda_function" {
         OPENTELEMETRY_COLLECTOR_CONFIG_URI          = "/var/task/collector.yaml"
         OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
       },
-      var.enabled_instrumentations != null ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
+      var.disabled_instrumentations != null ? { OTEL_PYTHON_DISABLED_INSTRUMENTATIONS = var.disabled_instrumentations } : {},
       var.extra_env_vars
     )
   }

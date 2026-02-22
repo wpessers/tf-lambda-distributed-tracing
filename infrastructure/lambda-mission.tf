@@ -3,11 +3,9 @@ module "control_mission" {
 
   name     = "control-mission"
   filename = "../dist/lambdas.zip"
-  handler  = "lambdas/controlMissionLambda.handler"
+  handler  = "control_mission_lambda.handler"
 
-  enabled_instrumentations = "undici"
-
-  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
+  instrumentation_layer_arn = aws_lambda_layer_version.python_layer.arn
   collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
 }
 

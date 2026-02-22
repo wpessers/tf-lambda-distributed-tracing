@@ -3,9 +3,7 @@ module "request_launch" {
 
   name     = "request-launch"
   filename = "../dist/lambdas.zip"
-  handler  = "lambdas/requestLaunchLambda.handler"
-
-  enabled_instrumentations = "pino,undici"
+  handler  = "request_launch_lambda.handler"
 
   extra_env_vars = {
     MISSION_CONTROL_BASE_URL = aws_api_gateway_stage.mission_test.invoke_url

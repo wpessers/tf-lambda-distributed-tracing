@@ -1,10 +1,9 @@
-node_modules/
+__pycache__/
+*.pyc
 
 dist/
 
 **/.terraform*
 *.tfstate*
-
-**/@types/
 
 collector.yaml
