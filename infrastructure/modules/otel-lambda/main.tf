@@ -29,7 +29,7 @@ resource "aws_lambda_function" "lambda_function" {
   handler          = var.handler
   source_code_hash = filebase64sha256(var.filename)
 
-  runtime       = "nodejs22.x"
+  runtime       = "java21"
   architectures = ["arm64"]
 
   layers = [
@@ -40,6 +40,9 @@ resource "aws_lambda_function" "lambda_function" {
   tracing_config {
     mode = "PassThrough"
   }
+
+  memory_size = var.memory_size
+  timeout     = var.timeout
 
   environment {
     variables = merge(
@@ -53,10 +56,7 @@ resource "aws_lambda_function" "lambda_function" {
         OPENTELEMETRY_COLLECTOR_CONFIG_URI          = "/var/task/collector.yaml"
         OTEL_LAMBDA_DISABLE_AWS_CONTEXT_PROPAGATION = true
       },
-      var.enabled_instrumentations != null ? { OTEL_NODE_ENABLED_INSTRUMENTATIONS = var.enabled_instrumentations } : {},
       var.extra_env_vars
     )
   }
-
-  timeout = 20
 }

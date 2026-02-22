@@ -1,10 +1,15 @@
-node_modules/
+# Gradle
+.gradle/
+build/
+**/build/
 
-dist/
-
+# Terraform
 **/.terraform*
 *.tfstate*
 
-**/@types/
-
+# Secrets
 collector.yaml
+
+# IDE
+.idea/
+*.iml

@@ -2,16 +2,18 @@ module "request_launch" {
   source = "./modules/otel-lambda"
 
   name     = "request-launch"
-  filename = "../dist/lambdas.zip"
-  handler  = "lambdas/requestLaunchLambda.handler"
-
-  enabled_instrumentations = "pino,undici"
+  filename = "../launch/build/distributions/launch.zip"
+  handler  = "com.example.launch.RequestLaunchHandler"
 
   extra_env_vars = {
-    MISSION_CONTROL_BASE_URL = aws_api_gateway_stage.mission_test.invoke_url
+    MISSION_CONTROL_BASE_URL             = aws_api_gateway_stage.mission_test.invoke_url
+    OTEL_JAVA_AGENT_FAST_STARTUP_ENABLED = "true"
   }
-  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
+
+  instrumentation_layer_arn = aws_lambda_layer_version.javaagent_layer.arn
   collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
+
+  memory_size = 1024
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {

@@ -2,12 +2,14 @@ module "control_mission" {
   source = "./modules/otel-lambda"
 
   name     = "control-mission"
-  filename = "../dist/lambdas.zip"
-  handler  = "lambdas/controlMissionLambda.handler"
+  filename = "../mission/build/distributions/mission.zip"
+  handler  = "com.example.mission.ControlMissionHandler"
 
-  enabled_instrumentations = "undici"
+  extra_env_vars = {
+    AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-proxy-handler"
+  }
 
-  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
+  instrumentation_layer_arn = aws_lambda_layer_version.javawrapper_layer.arn
   collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
 }
 
