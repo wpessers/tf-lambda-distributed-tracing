@@ -25,10 +25,11 @@ public class ControlMissionHandler implements RequestHandler<APIGatewayProxyRequ
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context) {
         try {
-            String rocketName = event.getPathParameters().get("rocketName");
-            if (rocketName == null) {
-                throw new IllegalArgumentException("No rocket name specified");
+            Map<String, String> pathParams = event.getPathParameters();
+            if (pathParams == null || pathParams.get("rocketName") == null) {
+                throw new IllegalArgumentException("No rocket name specified. pathParameters=" + pathParams);
             }
+            String rocketName = pathParams.get("rocketName");
 
             GetItemResponse response = dynamoDb.getItem(GetItemRequest.builder()
                     .tableName("Mission")

@@ -3,7 +3,7 @@ module "control_mission" {
 
   name     = "control-mission"
   filename = "../mission/build/distributions/mission.zip"
-  handler  = "com.example.mission.ControlMissionHandler"
+  handler  = "com.example.mission.ControlMissionHandler::handleRequest"
 
   extra_env_vars = {
     AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-proxy-handler"
