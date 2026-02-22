@@ -10,8 +10,8 @@ module "request_launch" {
   extra_env_vars = {
     MISSION_CONTROL_BASE_URL = aws_api_gateway_stage.mission_test.invoke_url
   }
-
-  collector_layer_arn = aws_lambda_layer_version.collector_layer.arn
+  instrumentation_layer_arn = aws_lambda_layer_version.nodejs_layer.arn
+  collector_layer_arn       = aws_lambda_layer_version.collector_layer.arn
 }
 
 data "aws_iam_policy_document" "request_launch_policy" {
